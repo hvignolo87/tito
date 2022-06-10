@@ -4,8 +4,6 @@ import time
 import os
 import sys
 
-import streamlit as st
-
 """
 # TITO
 Bot used to book a day to request italian citizenship (by any method) or passport at Prenot@Mi website.
@@ -16,6 +14,13 @@ In order to making it work, you need to create a configuration file, like explai
 from modules import *
 from datetime import datetime
 from io import StringIO
+
+try:
+    # Import streamlit for front end
+    import streamlit as st
+except ModuleNotFoundError:
+    # If not installed, install it
+    Installer('streamlit').install()
 
 # Start the script
 def tito(uploaded_file, check_hour):
@@ -88,7 +93,7 @@ def tito(uploaded_file, check_hour):
         st.write('Checking the hour...')
         now = datetime.now()
         init_hour = datetime.now().replace(hour=19, minute=00, 
-                                        second=0, microsecond=0)
+                                           second=0, microsecond=0)
         diff = init_hour - now
         # Remove some seconds in order to improve performance
         diff = diff.total_seconds() - 3
@@ -165,7 +170,7 @@ def tito(uploaded_file, check_hour):
             pass
         
         # Logic to walk around the months
-        if len(green_days) == 0:
+        if not len(green_days):
             # Compare iteration number with stop limit
             if iter_count > max_tries:
                 # No available days within 18 months
@@ -250,8 +255,7 @@ if __name__ == '__main__':
     """
     check_hour = st.radio(
         label="Enable hour check mode",
-        options=('Yes', 'No'),
-        horizontal=True
+        options=('Yes', 'No')
     )
 
     check_hour = True if check_hour == 'Yes' else False
