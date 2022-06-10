@@ -2,4 +2,3 @@
 *.ini
 *.html
 *__pycache__
-*hugging_face*
