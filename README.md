@@ -67,15 +67,20 @@ NOTES = This is a note for the embassy.
 
 4. Open a CLI (bash, powershell) and navigate to the **BOT** folder with the *cd* command. Once there, copy&paste the following command:
 ```
-python main.py
+streamlit run app.py
 ```
+You'll notice that a web interface of the app is launched in a new tab.
 
-5. Depending on the selected service, the script runs until the OTP code is required (this depends on the location of the selected embassy). Once the popup window shows, you need to enter it manually. **Don't click OK once inserted the code, just wait**.
+5. In the interface you'll need to do 3 things:
+   - Load the *user_data.ini* file.
+   - Select if you want the script wait until 19hs or no.
+   - Run it.
+
+6. Depending on the selected service, the script runs until the OTP code is required (this depends on the location of the selected embassy). Once the popup window shows, you need to enter it manually. **Don't click OK once inserted the code, just wait**.
 You'll need to play with the *otp_delay* parameter in order to adjust it as minimum as possible. Start with 10s.
 
-6. Enjoy.
+7. Enjoy.
 
 ## Future improvings
-- [x] Develop a user-friendly web interface with Flask.
-- [ ] Automate the OTP code insertion.
-- [ ] Evaluate real time response, with high traffic in the website, in order to improve performance.
+- [X] Automate the OTP code insertion.
+- [X] Evaluate real time response, with high traffic in the website, in order to improve performance.
